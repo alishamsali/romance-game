@@ -4,6 +4,7 @@ import Welcome from './components/Welcome'
 import Categories from './components/Categories'
 import QuestionScreen from './components/QuestionScreen'
 import MyQuestions from './components/MyQuestions'
+import { ThemeProvider, useTheme } from './ThemeContext'
 
 export interface CustomQuestion {
   id: number;
@@ -12,13 +13,14 @@ export interface CustomQuestion {
 
 type ScreenType = 'welcome' | 'categories' | 'questions' | 'myQuestions';
 
-function App() {
+function AppContent() {
   const [screen, setScreen] = useState<ScreenType>('welcome')
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [customQuestions, setCustomQuestions] = useState<CustomQuestion[]>(() => {
     const saved = localStorage.getItem('customQuestions')
     return saved ? JSON.parse(saved) : []
   })
+  const { toggleTheme, theme } = useTheme()
 
   useEffect(() => {
     localStorage.setItem('customQuestions', JSON.stringify(customQuestions))
@@ -41,6 +43,9 @@ function App() {
 
   return (
     <div className="app">
+      <button className="theme-toggle" onClick={toggleTheme} title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}>
+        {theme === 'light' ? '🌙' : '☀️'}
+      </button>
       {screen === 'welcome' && <Welcome onStart={() => setScreen('categories')} />}
       {screen === 'categories' && (
         <Categories 
@@ -70,6 +75,14 @@ function App() {
         />
       )}
     </div>
+  )
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   )
 }
 

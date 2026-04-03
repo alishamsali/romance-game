@@ -1,3 +1,37 @@
+:root {
+  /* Light mode colors */
+  --bg-primary: linear-gradient(135deg, #fef6e8 0%, #ffe4e9 100%);
+  --bg-secondary: #ffffff;
+  --text-primary: #4a3728;
+  --text-secondary: #a8887a;
+  --text-muted: #6b4c3b;
+  --accent-primary: #e8b4b8;
+  --accent-secondary: #d49a9f;
+  --accent-light: #f9e4e7;
+  --border-color: #ffe4e9;
+  --shadow-light: rgba(232, 180, 184, 0.1);
+  --shadow-medium: rgba(232, 180, 184, 0.4);
+  --shadow-dark: rgba(232, 180, 184, 0.6);
+  --icon-color: #e8b4b8;
+}
+
+[data-theme='dark'] {
+  /* Dark mode colors */
+  --bg-primary: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  --bg-secondary: #0f3460;
+  --text-primary: #e8e8e8;
+  --text-secondary: #b0b0b0;
+  --text-muted: #808080;
+  --accent-primary: #e94560;
+  --accent-secondary: #d43050;
+  --accent-light: #2a1830;
+  --border-color: #2a3f5f;
+  --shadow-light: rgba(233, 69, 96, 0.1);
+  --shadow-medium: rgba(233, 69, 96, 0.3);
+  --shadow-dark: rgba(233, 69, 96, 0.5);
+  --icon-color: #e94560;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,9 +40,10 @@
 
 body {
   font-family: 'Cairo', sans-serif;
-  background: linear-gradient(135deg, #fef6e8 0%, #ffe4e9 100%);
+  background: var(--bg-primary);
   min-height: 100vh;
-  color: #4a3728;
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 button {
@@ -26,15 +61,15 @@ button:active {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--accent-light);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #e8b4b8;
+  background: var(--accent-primary);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #d49a9f;
+  background: var(--accent-secondary);
 }
