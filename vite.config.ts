@@ -3,9 +3,14 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: process.env.NODE_ENV === 'production' ? '/romance-game/' : '/',
+  base: '/romance-game/',
   server: {
     port: 5173,
-    open: true
+    open: true,
+    hmr: {
+      protocol: 'http',
+      host: 'localhost',
+      port: 5173
+    }
   }
 })
